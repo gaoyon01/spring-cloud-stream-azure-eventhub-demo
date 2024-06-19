@@ -13,8 +13,8 @@ $Env:EVENTHUB_NAMESPACE="hcfirevinedeveventhub"
 $Env:EVENTHUB_NAME="eventhub"
 
 $Env:EVENTHUB_STORAGE_ACCOUNT_NAME="hcfirevinedevsa" 
-# Copy the storage account access key from the Azure portal
-$Env:EVENTHUB_STORAGE_ACCOUNT_KEY="<storage-account-access-key1-or-key2>" 
+# BEFORE RUN, COPY the storage account access key1 or key2 from the Azure portal
+$Env:EVENTHUB_STORAGE_ACCOUNT_KEY="" 
 $Env:EVENTHUB_STORAGE_ACCOUNT_CONTAINER_NAME="eventstorage" 
 
 # Cannot use jdk21 with some of the current libraries/versions, change to a lower one.
