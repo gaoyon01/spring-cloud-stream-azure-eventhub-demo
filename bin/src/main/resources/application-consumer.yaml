@@ -7,8 +7,7 @@ spring:
           group: ${EVENTHUB_CONSUMER_GROUP_NAME:"$Default"}
       eventhubs:
         bindings:
-          # <name>-in-0 must match the name in function.definition
-          consumer-in-0:
+          consume-in-0:
             consumer:
               checkpoint:
                 mode: MANUAL

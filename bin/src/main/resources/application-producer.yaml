@@ -9,8 +9,7 @@ spring:
   cloud:
     stream:
       bindings:
-        # <name>-out-0 must match the name in function.definition
-        producer-out-0:
+        supply-out-0:
           destination: ${EVENTHUB_NAME}
       function:
         definition: producer;

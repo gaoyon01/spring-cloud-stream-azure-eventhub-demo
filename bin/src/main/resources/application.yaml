@@ -6,10 +6,6 @@ logging:
     root: INFO
     com.poc.mamadou.demo: DEBUG
     org.springframework.web: DEBUG
-  file:
-    name: ${LOG_FILE:logs/app.log}  
-
-debug: false
 
 spring:
   profiles:
@@ -17,15 +13,12 @@ spring:
   cloud:
     azure:
       eventhubs:
-        resource:
-          resource-group: ${EVENTHUB_RESOURCE_GROUP}
-        namespace: ${EVENTHUB_NAMESPACE}
-        event-hub-name: ${EVENTHUB_NAME}
+        connection-string: ${EVENTHUB_CONNECTION_STRING}
         processor:
           checkpoint-store:
             account-name: ${EVENTHUB_STORAGE_ACCOUNT_NAME}
             account-key: ${EVENTHUB_STORAGE_ACCOUNT_KEY}
-            container-name: ${EVENTHUB_STORAGE_ACCOUNT_CONTAINER_NAME}
+            container-name: ${EVENTHUB_STORAGE_ACCOUNT_CONTAINER_NAME:default-container}
     stream:
       poller:
         initial-delay: 0
