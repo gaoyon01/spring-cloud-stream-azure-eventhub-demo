@@ -14,8 +14,7 @@
     ```
     ./run.ps1
     ```
-4. In another PowerShell 7 session, test the producer (or consumer) app.
-   For example producer app test:
+4. To test the producer app, while it's running in the PowerShell, open another PowerShell 7 session and hit the controller. For example:
     ```
     PS C:\> curl "http://localhost:8080/event?q=123"
     Event Sent!
