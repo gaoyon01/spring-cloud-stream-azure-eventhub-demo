@@ -14,7 +14,7 @@
     ```
     ./run.ps1
     ```
-4. In another PowerShall 7 session, test the producer (or consumer) app.
+4. In another PowerShell 7 session, test the producer (or consumer) app.
    For example producer app test:
     ```
     PS C:\> curl "http://localhost:8080/event?q=123"
