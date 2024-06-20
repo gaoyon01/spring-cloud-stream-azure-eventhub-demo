@@ -18,7 +18,7 @@ public class EventHubProducerConfig {
     @Bean
     public Sinks.Many<Message<String>> many() {
         return Sinks.many().unicast().onBackpressureBuffer();
-    }
+    }   
 
     @Bean
     public Supplier<Flux<Message<String>>> producer(Sinks.Many<Message<String>> many) {
