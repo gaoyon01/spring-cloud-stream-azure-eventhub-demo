@@ -1,3 +1,6 @@
+bin/
+logs/
+
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -30,3 +33,5 @@ build/
 
 ### VS Code ###
 .vscode/
+run.ps1
+logs/app.log
