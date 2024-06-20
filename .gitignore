@@ -34,3 +34,4 @@ build/
 run.ps1
 logs/
 logs/app.log
+/logs
