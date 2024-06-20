@@ -2,9 +2,10 @@ spring:
   cloud:
     stream:
       bindings:
-        consume-in-0:
+        # <name>-in-0 must match the name in function.definition
+        consumer-in-0:
           destination: ${EVENTHUB_NAME}
-          group: ${EVENTHUB_CONSUMER_GROUP_NAME:"$Default"}
+          group: ${EVENTHUB_CONSUMER_GROUP_NAME:$Default}
       eventhubs:
         bindings:
           # <name>-in-0 must match the name in function.definition

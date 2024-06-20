@@ -27,7 +27,7 @@ az login
 
 # Set the active profile to "producer" to run the producer application.
 # Set the active profile to "consumer" to run the consumer application.
-$Env:ACTIVE_PROFILE="producer"
-# $Env:ACTIVE_PROFILE="consumer"
+# $Env:ACTIVE_PROFILE="producer"
+$Env:ACTIVE_PROFILE="consumer"
 
 ./mvnw.cmd spring-boot:run
