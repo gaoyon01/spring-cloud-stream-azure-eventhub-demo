@@ -1,13 +1,13 @@
-package com.mamadou.demo;
+package com.lexisnexis.healthcare.firevine.eventhandler;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JavaSpringBootApplication {
+public class EventHubApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JavaSpringBootApplication.class, args);
+		SpringApplication.run(EventHubApplication.class, args);
 	}
 
 }

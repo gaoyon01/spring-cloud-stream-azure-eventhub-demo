@@ -8,16 +8,19 @@
 		<version>2.7.8</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.mamadou.demo</groupId>
-	<artifactId>spring-cloud-stream-azure-eventhub-demo</artifactId>
+
+	<groupId>com.lexisnexis.healthcare.firevine</groupId>
+	<artifactId>hc-firevine-eventhandler-outbound-ws</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Spring Cloud Azure Event Hub Demo</name>
 	<description>Demo project for Spring Boot</description>
+
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<spring-cloud.version>2021.0.5</spring-cloud.version>
 		<spring-cloud-azure.version>4.5.0</spring-cloud-azure.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

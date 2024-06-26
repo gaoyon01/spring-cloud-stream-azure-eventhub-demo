@@ -1,4 +1,4 @@
-package com.mamadou.demo.consumer;
+package com.lexisnexis.healthcare.firevine.eventhandler.consumer;
 
 import com.azure.core.util.BinaryData;
 import com.azure.spring.messaging.checkpoint.Checkpointer;

@@ -1,0 +1,20 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="EventHubApplication" type="Application" factoryName="Application">
+    <envs>
+      <env name="AZURE_TENANT_ID" value="bc877e61-f6cf-4461-accd-0565fa4ca357" />
+      <env name="EVENTHUB_RESOURCE_GROUP" value="app-hearth-dev-eastus" />
+      <env name="EVENTHUB_NAMESPACE" value="hcfirevinedeveventhub" />
+      <env name="EVENTHUB_NAME" value="eventhub" />
+      <env name="EVENTHUB_STORAGE_ACCOUNT_NAME" value="hcfirevinedevsa" />
+      <env name="EVENTHUB_STORAGE_ACCOUNT_KEY" value="80MvZceN9FJwx7SAaQZN4pgX6Mjg07ggX0ak+w3Rc2Ui+iJR/61mDEK62+EioTMmuXLYFqOR5CKt+AStiIVImA==" />
+      <env name="EVENTHUB_STORAGE_ACCOUNT_CONTAINER_NAME" value="eventstorage" />
+      <env name="ACTIVE_PROFILE" value="producer" />
+      <env name="APP_SERVER_PORT" value="8080" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.lexisnexis.healthcare.firevine.eventhandler.EventHubApplication" />
+    <module name="spring-cloud-stream-azure-eventhub-demo" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

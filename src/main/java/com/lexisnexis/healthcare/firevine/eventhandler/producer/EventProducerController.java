@@ -1,4 +1,4 @@
-package com.mamadou.demo.producer;
+package com.lexisnexis.healthcare.firevine.eventhandler.producer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
