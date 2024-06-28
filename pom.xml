@@ -1,30 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.lexisnexis.healthcare.firevine</groupId>
+	<artifactId>hc-firevine-eventhandler-outbound-ws</artifactId>
+	<name>Eventhandler Outbound Service</name>
+	<packaging>jar</packaging>
+	<version>0.0.9-SNAPSHOT</version>
+
+	<!-- DISABLE WHEN BUILDING LOCALLY
+	<scm>
+		<connection>
+			scm:git:https://${project.scm.credentials}@github.com/LexisNexis-RBA/hc-firevine-eventhandler-outbound-ws</connection>
+		<developerConnection>
+			scm:git:https://${project.scm.credentials}@github.com/LexisNexis-RBA/hc-firevine-eventhandler-outbound-ws</developerConnection>
+		<url>https://github.com/LexisNexis-RBA/hc-firevine-eventhandler-outbound-ws</url>
+		<tag>head</tag>
+	</scm>
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Releases</name>
+			<url>
+				https://useast.jfrog.lexisnexisrisk.com/artifactory/hcare-maven-release-virtual</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Snapshots</name>
+			<uniqueVersion>false</uniqueVersion>
+			<url>
+				https://useast.jfrog.lexisnexisrisk.com/artifactory/hcare-maven-snapshot-virtual</url>
+		</snapshotRepository>
+	</distributionManagement>
+	UNCOMMENT WHEN PUSH -->
+
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.8</version>
+		<version>3.3.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<repositories>
+		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>releases</id>
+			<name>Releases</name>
+			<url>
+				https://useast.jfrog.lexisnexisrisk.com/artifactory/hcare-maven-release-virtual</url>
+		</repository>
+		<repository>
+			<snapshots />
+			<id>snapshots</id>
+			<name>Snapshots</name>
+			<url>
+				https://useast.jfrog.lexisnexisrisk.com/artifactory/hcare-maven-snapshot-virtual</url>
+		</repository>
+	</repositories>
 
-	<groupId>com.lexisnexis.healthcare.firevine</groupId>
-	<artifactId>hc-firevine-eventhandler-outbound-ws</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Spring Cloud Azure Event Hub Demo</name>
-	<description>Demo project for Spring Boot</description>
-
+	<pluginRepositories>
+		<pluginRepository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>releases</id>
+			<name>plugins-releases</name>
+			<url>
+				https://useast.jfrog.lexisnexisrisk.com/artifactory/hcare-plugins-releases</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<properties>
-		<java.version>17</java.version>
-		<spring-cloud.version>2021.0.5</spring-cloud.version>
-		<spring-cloud-azure.version>4.5.0</spring-cloud-azure.version>
+		<!-- DISABLE WHEN BUILDING LOCALLY
+		<project.scm.credentials>${env.GIT_USER}:${env.GIT_TOKEN}</project.scm.credentials>
+		UNCOMMENT WHEN PUSH -->
+
+		<additionalparam>-Xdoclint:none</additionalparam>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>21</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<build-helper-maven-plugin-version>3.6.0</build-helper-maven-plugin-version>
+		<logstash-version>7.4</logstash-version>
+		<micrometer-version>1.13.0</micrometer-version>
+		<spring-cloud.version>2023.0.2</spring-cloud.version>
+		<additionalparam>-Xdoclint:none</additionalparam>
+		<maven-release-plugin.version>3.1.0</maven-release-plugin.version>
+		<maven-scm-provider-gitexe.version>2.1.0</maven-scm-provider-gitexe.version>
+		<spring-framework.version>5.2.20.RELEASE</spring-framework.version>
+		<spring-security.version>5.3.10.RELEASE</spring-security.version>
+
+		<!--Azure Event Hub and Spring Cloud Stream Related-->
+		<spring-cloud-azure.version>5.13.0</spring-cloud-azure.version>
 	</properties>
 
+	<prerequisites>
+		<maven>3.9.0</maven>
+	</prerequisites>
 	<dependencies>
+		<!-- Spring Boot Server dependencies -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bootstrap</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logstash-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-jmx</artifactId>
+			<version>${micrometer-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- API BIZ LOGIC DEPENDENCIES -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.burt</groupId>
+			<artifactId>jmespath</artifactId>
+			<version>0.6.0</version>
+			<type>pom</type>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.burt/jmespath-jackson -->
+		<dependency>
+			<groupId>io.burt</groupId>
+			<artifactId>jmespath-jackson</artifactId>
+			<version>0.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.17.0</version>
 		</dependency>
 
 		<dependency>
@@ -32,12 +193,23 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream</artifactId>
+			<version>4.1.2</version>
+		</dependency>
 
+		<!-- lombok related -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!--Azure Event Hub and Spring Cloud Stream Related-->
 		<dependency>
 			<groupId>com.azure.spring</groupId>
 			<artifactId>spring-cloud-azure-starter</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.azure.spring</groupId>
 			<artifactId>spring-cloud-azure-starter-storage</artifactId>
@@ -46,41 +218,28 @@
 			<groupId>com.azure.spring</groupId>
 			<artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>com.azure.spring</groupId>
-			<artifactId>spring-cloud-azure-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-stream</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>com.azure.spring</groupId>
 			<artifactId>spring-cloud-azure-stream-binder-eventhubs</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.azure.spring</groupId>
+			<artifactId>spring-cloud-azure-stream-binder-eventhubs</artifactId>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-stream</artifactId>
-			<scope>test</scope>
-			<classifier>test-binder</classifier>
-			<type>test-jar</type>
-		</dependency>
+	</dependency>
 	</dependencies>
+
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<type>pom</type>
+				<version>3.3.0</version>
+				<scope>import</scope>
+			</dependency>
+
+			<!--Azure Event Hub and Spring Cloud Stream Related-->
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
@@ -97,9 +256,17 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+
+			<!-- lombok related -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -112,15 +279,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>11</source>
-					<target>11</target>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
-
 </project>
